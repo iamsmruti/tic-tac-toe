@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, AlertTitle, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import BackButton from '../components/BackButton'
 import cross from '../assets/cross.png'
 import CustomButton from '../components/CustomButton'

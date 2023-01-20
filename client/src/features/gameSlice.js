@@ -26,14 +26,7 @@ export const gameSlice = createSlice({
         state.turn = action.payload.turn;
     },
     resetGame: (state) => {
-        state.owner = '';
-        state.rival = '';
-        state.ownerName = '';
-        state.rivalName = '';
         state.board = ['', '', '', '', '', '', '', '', ''];
-        state.status = '';
-        state.winner = '';
-        state.turn = '';
     }
   }
 });
