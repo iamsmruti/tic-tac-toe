@@ -6,14 +6,24 @@ import { checkWinner } from '../utils/engine.js'
 export const newGame = async (req, res) => {
     const token = req.cookies.access_token
     if(!token) return res.status(401).json("Access Denied")
+    console.log(token)
 
     try {
         const verified = jwt.verify(token, process.env.TOKEN_SECRET)
         if(!verified) return res.status(401).json("Access Denied")
 
-        const game = await Game.find({rival: req.body.rival})
-        if(game.length > 0 && (game[0].status !== "owners move" || game[0].status !== "rivals move")) 
-            return res.status(409).json({message: "You already have a game with this player"})
+        console.log(verified)
+
+        const game1 = await Game.find({rival: req.body.rival})
+        const game2 = await Game.find({owner: req.body.rival})
+        const game = game1.concat(game2)    
+        game.sort((a, b) => {return b.updatedAt - a.updatedAt})
+
+        console.log(game[0])
+        
+        if((game[0].status == "owners move" || game[0].status == "rivals move")){ 
+            console.log(true)
+            return res.status(409).json({message: "You already have a game with this player"})}
 
         const email = verified.email
 

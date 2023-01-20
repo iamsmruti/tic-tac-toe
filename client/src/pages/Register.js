@@ -7,12 +7,23 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { url } from '../constants/url'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Register = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
   const [username, setUsername] = useState('')
+
+  const notifyError = (message) => toast.error(message, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+
+  const notifySuccess = (message) => toast.success(message, {
+    position: toast.POSITION.TOP_RIGHT
+  })
 
   const handleRegister = () => {
     axios.post(`${url}/api/auth/register`, {
@@ -23,13 +34,15 @@ const Register = () => {
     }, {
       withCredentials: true
     }).then((res) => {
+      notifySuccess("Account created")
       navigate('/login')
     }).catch((err) => {
-      console.log(err)
+      notifyError(err.response.data.message)
     })
   }
 
   return (
+    <>
     <Stack sx={{height: '100%'}}>
       <BackButton path='/'/>
 
@@ -67,6 +80,8 @@ const Register = () => {
         </Stack>
       </Stack>
     </Stack>
+    <ToastContainer />
+    </>
   )
 }
 

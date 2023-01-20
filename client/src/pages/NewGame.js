@@ -7,23 +7,39 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { url } from '../constants/url'
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const NewGame = () => {
   const navigate = useNavigate()
   const [rival, setRival] = useState('')
+
+  const notifyError = (message) => toast.error(message, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+
+  const notifySuccess = (message) => toast.success(message, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+
   const handleClick = () => {
     axios.post(`${url}/api/game/new`, {
       rival: rival
-    }, {
+    },{
       withCredentials: true
     }).then((res) => {
+      notifySuccess("Game created")
       navigate('/home')
       console.log(res.data)
     }).catch((err) => {
-      console.log(err.message)
+      const error = err.response.data.message !== "Cannot read properties of undefined (reading 'status')" ? err.response.data.message : "user not found"
+      notifyError(error)
+      console.log(err)
     })
   }
 
   return (
+    <>
     <Stack sx={{height: '100%'}}>
       <BackButton path='/home'/>
 
@@ -46,6 +62,8 @@ const NewGame = () => {
         </Stack>
       </Stack>
     </Stack>
+    <ToastContainer />
+    </>
   )
 }
 

@@ -13,6 +13,12 @@ export const registerUser = async (req, res) => {
     const { error } = registerValidation(req.body)
     if (error) return res.json(error.details[0].message)
 
+    const emailExist = await User.find({ email: req.body.email })
+    if(emailExist.length > 0) return res.status(400).json({message: "Email Already Exist"})
+
+    const usernameExist = await User.find({ username: req.body.username })
+    if(usernameExist.length > 0) return res.status(400).json({message: "Username Already Exist"})
+
     // Hash the password
     const salt = await bcrypt.genSalt(10)
     const hashedPassword = await bcrypt.hash(req.body.password, salt)
@@ -58,7 +64,7 @@ export const loginUser = async (req, res) => {
         }, process.env.TOKEN_SECRET)
 
         return res.cookie('access_token', token, {
-            expiry: new Date(Date.now() + 8 * 3600000),
+            expiry: new Date(Date.now() + 32 * 3600000),
             sameSite: 'none',
             secure: true,
             httpOnly: true
