@@ -54,7 +54,7 @@ export const allGames = async (req, res) => {
         const games = games1.concat(games2)
 
         games.sort((a, b) => {
-            return a.updatedAt - b.updatedAt
+            return b.updatedAt - a.updatedAt
         })
 
         res.send(games)
