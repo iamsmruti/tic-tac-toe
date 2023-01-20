@@ -13,7 +13,7 @@ const app = express()
 dotenv.config()
 
 app.use(cors({
-    origin: ['https://crossedcircle.vercel.app', 'http://localhost:3000',],
+    origin: ['http://localhost:3000', 'https://crossedcircle.vercel.app',],
     credentials: true,
 }))
 

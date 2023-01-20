@@ -21,24 +21,26 @@ export const newGame = async (req, res) => {
 
         console.log(game[0])
         
-        if((game[0].status == "owners move" || game[0].status == "rivals move")){ 
+        if(game[0] !== undefined && (game[0].status == "owners move" || game[0].status == "rivals move")){ 
             console.log(true)
             return res.status(409).json({message: "You already have a game with this player"})
         }
 
+        console.log("first")
         const email = verified.email
-
+        console.log(email)
         if(email == req.body.rival) return res.status(409).json({message: "You can't play with yourself"})
         
         const rival = await User.find({email: req.body.rival})
-        if(!rival) return res.status(409).json({message: "This player doesn't exist"})
+        console.log(rival)
+        if(rival.length === 0) return res.status(409).json({message: "This player doesn't exist"})
 
 
         const newGame = new Game({
             owner: email,
             ownerName: verified.username,
             rival: req.body.rival,
-            rivalName: findRival[0].username,
+            rivalName: rival[0].username,
             status: "owners move",
         })
 
