@@ -61,7 +61,7 @@ export const loginUser = async (req, res) => {
             httpOnly: true,
             maxAge: 99999,
             sameSite: 'lax',
-            domain: 'localhost',
+            secure: false,
         }) && res.status(200).json({
             message: "Logged in Successfully"
         })
