@@ -6,7 +6,6 @@ import { registerValidation } from '../middlewares/registerValidator.js'
 import { loginValidation } from '../middlewares/loginValidator.js'
 
 import dotenv from 'dotenv'
-import nodemon from 'nodemon'
 dotenv.config()
 
 export const registerUser = async (req, res) => {
