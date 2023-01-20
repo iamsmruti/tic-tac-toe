@@ -11,11 +11,10 @@ import gameRoutes from './routes/gameRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 
 const app = express()
-const server = http.createServer(app)
 dotenv.config()
 
 app.use(cors({
-    origin: 'https://crossedcircle.vercel.app/',
+    origin: ['http://localhost:3000', 'https://crossedcircle.vercel.app/'],
     credentials: true,
 }))
 
@@ -29,6 +28,6 @@ app.use('/api/user', userRoutes)
 mongoose.connect(process.env.URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}).then(() => server.listen(process.env.PORT, () => console.log(`Server is live at http://localhost:${process.env.PORT}`)))
+}).then(() => app.listen(process.env.PORT, () => console.log(`Server is live at http://localhost:${process.env.PORT}`)))
 
 export default app
