@@ -4,8 +4,8 @@ import BackButton from '../components/BackButton'
 import { customInput } from '../styles/customInput'
 import CustomButton from '../components/CustomButton'
 import axios from 'axios'
-import { API } from '../constants/api'
 import { useNavigate } from 'react-router-dom'
+import { url } from '../constants/url'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -15,7 +15,7 @@ const Register = () => {
   const [username, setUsername] = useState('')
 
   const handleRegister = () => {
-    axios.post(`${API}/auth/register`, {
+    axios.post(`${url}/auth/register`, {
       email: email,
       password: password,
       name: name,

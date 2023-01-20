@@ -1,7 +1,4 @@
 import { Typography, Stack } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 // components
 import CustomButton from '../components/CustomButton'

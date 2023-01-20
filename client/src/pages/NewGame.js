@@ -5,12 +5,13 @@ import { customInput } from '../styles/customInput'
 import CustomButton from '../components/CustomButton'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { url } from '../constants/url'
 
 const NewGame = () => {
   const navigate = useNavigate()
   const [rival, setRival] = useState('')
   const handleClick = () => {
-    axios.post("http://localhost:4343/api/game/new", {
+    axios.post(`${url}/api/game/new`, {
       rival: rival
     }, {
       withCredentials: true

@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { url } from '../constants/url'
+
 const Login = () => {
   const navigate = useNavigate()
   const notifyError = (message) => toast.error(message, {
@@ -24,7 +26,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
   const handleLogin = () => {
-    axios.post(`${API}/auth/login`, {
+    axios.post(`${url}/api/auth/login`, {
       email: email,
       password: password
     }, {

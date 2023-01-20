@@ -1,5 +1,5 @@
 // development
-url = "http://localhost:4343"
+// url = "http://localhost:4343"
 
 // production
-// url = ""
+export const url = "https://crossedcircle-api.vercel.app"

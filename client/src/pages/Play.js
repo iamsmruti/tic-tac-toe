@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { gameInfo, updateGame } from '../features/gameSlice'
+import { url } from '../constants/url'
 
 const Play = ({ events }) => {
   const dispatch = useDispatch()
@@ -19,7 +20,7 @@ const Play = ({ events }) => {
   const [game, setGame] = useState('')
 
   useEffect(() => {
-    axios.get(`http://localhost:4343/api/game/${id}`, {
+    axios.get(`${url}/api/game/${id}`, {
       withCredentials: true
     }).then((res) => {
       console.log(res.data)
@@ -74,7 +75,7 @@ const Play = ({ events }) => {
     if (user.email === game.rival)
       newSquares[index] = 'rival'
 
-    axios.patch(`http://localhost:4343/api/game/${id}`, {
+    axios.patch(`${url}/api/game/${id}`, {
       board: newSquares
     }, {
       withCredentials: true

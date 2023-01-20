@@ -11,12 +11,13 @@ import CustomCard from '../components/CustomCard'
 
 // Constants
 import { black1, yellow } from '../constants/colors'
+import { url } from '../constants/url'
 
 const Home = ({events}) => {
   const [games, setGames] = useState(null)
 
   useEffect(() => {
-    axios.get('http://localhost:4343/api/game', {
+    axios.get(`${url}/api/game`, {
       withCredentials: true
     }).then((res) => {
       setGames(res.data)
