@@ -26,6 +26,7 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import Play from './pages/Play';
 import NewGame from './pages/NewGame';
+import { url } from './constants/url';
 
 // MongoDB AppID
 const app = new Realm.App({ id: "tic_tac_toe-yywge" });
@@ -55,7 +56,7 @@ function App() {
 
   // Dispatch user info
   useEffect(() => {
-    axios.get('http://localhost:4343/api/user', {
+    axios.get(`${url}/api/user`, {
       withCredentials: true
     }).then((res) => {
       // navigate('/home')
