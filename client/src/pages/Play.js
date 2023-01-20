@@ -8,7 +8,7 @@ import Board from '../components/Board'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { gameInfo, updateGame } from '../features/gameSlice'
+import { gameInfo, resetGame, updateGame } from '../features/gameSlice'
 import { url } from '../constants/url'
 
 const Play = ({ events }) => {
@@ -62,6 +62,12 @@ const Play = ({ events }) => {
   const buttonClicked = (err) => {
     console.log(err)
   }
+
+  useEffect(() => {
+    if(game.status === "owner wins" || game.status === "rival wins" || game.status === "draw"){
+      dispatch(resetGame())
+    }
+  },[game.status])
 
   const handleChange = (index) => {
     const newSquares = [...squares]
