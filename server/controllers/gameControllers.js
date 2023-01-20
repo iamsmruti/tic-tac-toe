@@ -30,8 +30,8 @@ export const newGame = async (req, res) => {
 
         if(email == req.body.rival) return res.status(409).json({message: "You can't play with yourself"})
         
-        const findRival = await User.find({email: req.body.rival})
-        if(findRival.length == 0) return res.status(409).json({message: "This player doesn't exist"})
+        const rival = await User.find({email: req.body.rival})
+        if(!rival) return res.status(409).json({message: "This player doesn't exist"})
 
 
         const newGame = new Game({
