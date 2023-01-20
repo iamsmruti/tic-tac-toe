@@ -15,7 +15,7 @@ const Register = () => {
   const [username, setUsername] = useState('')
 
   const handleRegister = () => {
-    axios.post(`${url}/auth/register`, {
+    axios.post(`${url}/api/auth/register`, {
       email: email,
       password: password,
       name: name,
