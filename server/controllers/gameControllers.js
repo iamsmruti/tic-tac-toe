@@ -15,7 +15,6 @@ export const newGame = async (req, res) => {
         console.log(verified)
 
         const game1 = await Game.find({rival: req.body.rival})
-        const game2 = await Game.find({owner: req.body.rival})
         const game = game1.concat(game2)    
         game.sort((a, b) => {return b.updatedAt - a.updatedAt})
 
@@ -23,7 +22,8 @@ export const newGame = async (req, res) => {
         
         if((game[0].status == "owners move" || game[0].status == "rivals move")){ 
             console.log(true)
-            return res.status(409).json({message: "You already have a game with this player"})}
+            return res.status(409).json({message: "You already have a game with this player"})
+        }
 
         const email = verified.email
 
