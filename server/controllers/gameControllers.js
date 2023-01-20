@@ -14,8 +14,7 @@ export const newGame = async (req, res) => {
 
         console.log(verified)
 
-        const game1 = await Game.find({rival: req.body.rival})
-        const game = game1.concat(game2)    
+        const game = await Game.find({rival: req.body.rival})   
         game.sort((a, b) => {return b.updatedAt - a.updatedAt})
 
         console.log(game[0])
