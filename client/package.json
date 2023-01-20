@@ -47,5 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4343"
+  "proxy": ["https://crossedcircle-api.vercel.app","http://localhost:4343", "https://crossedcircle.vercel.app"]
 }

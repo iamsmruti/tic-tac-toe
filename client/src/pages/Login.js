@@ -17,7 +17,7 @@ const Login = () => {
     position: toast.POSITION.TOP_RIGHT
   })
 
-  const notifySuccess = (message) => toast.error(message, {
+  const notifySuccess = (message) => toast.success(message, {
     position: toast.POSITION.TOP_RIGHT
   })
 
@@ -34,8 +34,8 @@ const Login = () => {
       if (res.status === 200) {
         localStorage.setItem('auth', true)
         navigate('/home')
+        notifySuccess("Login Successful")
       }
-
       console.log(res)
     }).catch((err) => {
       console.log(err.response.data.message)
