@@ -58,7 +58,7 @@ export const loginUser = async (req, res) => {
         }, process.env.TOKEN_SECRET)
 
         return res.cookie('access_token', token, {
-            maxAge: 99999,
+            expiry: new Date(Date.now() + 8 * 3600000),
             sameSite: 'none',
             secure: true,
             httpOnly: true

@@ -1,6 +1,5 @@
 import express from 'express'
 import cors from 'cors'
-import http from 'http'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
