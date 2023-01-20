@@ -6,6 +6,7 @@ import { registerValidation } from '../middlewares/registerValidator.js'
 import { loginValidation } from '../middlewares/loginValidator.js'
 
 import dotenv from 'dotenv'
+import nodemon from 'nodemon'
 dotenv.config()
 
 export const registerUser = async (req, res) => {
@@ -59,6 +60,8 @@ export const loginUser = async (req, res) => {
 
         return res.cookie('access_token', token, {
             httpOnly: true,
+            sameSite: none,
+            secure: true,
             expires: new Date(Date.now() + 48 * 3600000),
         }) && res.status(200).json({
             message: "Logged in Successfully"
