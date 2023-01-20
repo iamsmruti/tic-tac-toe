@@ -4,7 +4,6 @@ import BackButton from '../components/BackButton'
 import { customInput } from '../styles/customInput'
 import CustomButton from '../components/CustomButton'
 import axios from 'axios'
-import { API } from '../constants/api'
 import { useNavigate } from 'react-router-dom'
 
 import { ToastContainer, toast } from 'react-toastify';

@@ -15,7 +15,7 @@ const server = http.createServer(app)
 dotenv.config()
 
 app.use(cors({
-    origin: 'https://crossedcircle.vercel.app',
+    origin: 'http://localhost:3000',
     credentials: true,
 }))
 
