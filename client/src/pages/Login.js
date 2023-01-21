@@ -57,8 +57,8 @@ const Login = () => {
 
           <Stack sx={{ mt: 3 }}>
             <Stack sx={{ mt: 2.3 }}>
-              <Typography sx={{ fontSize: 17, fontWeight: 600 }}>Username</Typography>
-              <input onChange={(e) => setEmail(e.target.value)} autoComplete='false' placeholder='Type your username here' style={customInput}></input>
+              <Typography sx={{ fontSize: 17, fontWeight: 600 }}>Email</Typography>
+              <input onChange={(e) => setEmail(e.target.value)} autoComplete='false' placeholder='Type your email here' style={customInput}></input>
             </Stack>
 
             <Stack sx={{ mt: 2.3 }}>
